@@ -1,5 +1,6 @@
 <?php
 namespace App\Controller;
+use App\Entity\Category;
 use App\Entity\Post;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -14,14 +15,24 @@ class MainController extends Controller
             'controller_name' => 'MainController',
         ]);
     }
+//    /**
+//     * @Route("/blog", name="blog")
+//     */
+//    public function blog()
+//    {
+//        $posts = $this->getDoctrine()->getRepository(Post::class)->findAll();
+//        return $this->render('main/blog.html.twig', compact('posts'));
+//    }
+
     /**
      * @Route("/blog", name="blog")
      */
     public function blog()
     {
-        $posts = $this->getDoctrine()->getRepository(Post::class)->findAll();
-        return $this->render('main/blog.html.twig', compact('posts'));
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+        return $this->render('main/blog.html.twig', compact('categories'));
     }
+
     /**
      * @Route("/article/{articleId}", name="article")
      */

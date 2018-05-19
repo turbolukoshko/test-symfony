@@ -46,7 +46,7 @@ class MainController extends Controller
     /**
      * @Route("/article/{slug}", name="article")
      */
-    public function article(Post $slug)
+    public function article($slug)
     {
         $post = $this->getDoctrine()->getRepository(Post::class)->find($slug);
         return $this->render('main/article.html.twig', [

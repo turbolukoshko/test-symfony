@@ -3,8 +3,7 @@
 /.env
 /public/bundles/
 /var/
-/vendor//.idea/
-###< symfony/framework-bundle ###
+/vendor/###< symfony/framework-bundle ###
 
 ###> symfony/webpack-encore-pack ###
 /node_modules/

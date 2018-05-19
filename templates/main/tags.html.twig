@@ -10,11 +10,12 @@
     <h1> Posts ✅</h1>
 
     {% for tag in tags %}
-    <h2>{{ tag.title }}</h2>
+    <li><a href="{{ path('tag', {'slug' : tag.id}) }}">{{ tag.title }}</a></li>
     <ul>
-        {% for post in tag.posts %}
-            <li><a href="{{ path('article', {'slug' : post.id}) }}">{{ post.title }}</a></li>
-        {% endfor %}
+
+        {#{% for post in tag.posts %}#}
+            {#<li><a href="{{ path('article', {'slug' : post.id}) }}">{{ post.title }}</a></li>#}
+        {#{% endfor %}#}
     </ul>
     {% endfor %}
 </div>

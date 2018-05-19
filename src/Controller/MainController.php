@@ -44,22 +44,22 @@ class MainController extends Controller
     }
 
     /**
-     * @Route("/article/{articleId}", name="article")
+     * @Route("/article/{slug}", name="article")
      */
-    public function article($articleId)
+    public function article(Post $slug)
     {
-        $post = $this->getDoctrine()->getRepository(Post::class)->find($articleId);
+        $post = $this->getDoctrine()->getRepository(Post::class)->find($slug);
         return $this->render('main/article.html.twig', [
             'post' => $post,
         ]);
     }
 
     /**
-     * @Route("/tag/{tagId}", name="tag")
+     * @Route("/tag/{slug}", name="tag")
      */
-    public function tag($tagId)
+    public function tag($slug)
     {
-        $tag = $this->getDoctrine()->getRepository(Tag::class)->find($tagId);
+        $tag = $this->getDoctrine()->getRepository(Tag::class)->find($slug);
         return $this->render('main/tag.html.twig', [
             'tag' => $tag,
         ]);

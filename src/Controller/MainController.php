@@ -45,27 +45,27 @@ class MainController extends Controller
     }
 
     /**
-     * @Route("/article/{slug}", name="article")
+     * @Route("/article/{post}", name="article")
      *
-     * @ParamConverter("slug", class="App\Entity\Post")
+     * @ParamConverter("post", class="App:Post")
      */
-    public function article($slug)
+    public function article(Post $post)
     {
 //        $post = $this->getDoctrine()->getRepository(Post::class)->find($slug);
         return $this->render('main/article.html.twig', [
-            'post' =>  $slug,
-            ]);
+            'post' => $post
+        ]);
     }
 
     /**
-     * @Route("/tag/{slug}", name="tag")
+     * @Route("/tag/{tag}", name="tag")
      *
-     * @ParamConverter("slug", class="App\Entity\Tag")
+     * @ParamConverter("tag", class="App\Entity\Tag")
      */
-    public function tag($slug)
+    public function tag(Tag $tag)
     {
         return $this->render('main/tag.html.twig', [
-            'tag' => $slug,
+            'tag' => $tag,
         ]);
     }
 //

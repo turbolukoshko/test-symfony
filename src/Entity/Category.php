@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Entity;
-
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  */
@@ -17,40 +14,41 @@ class Category
      * @ORM\Column(type="integer")
      */
     private $id;
-
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $title;
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="category")
      */
     private $posts;
+
+    /**
+     * @param mixed $id
+     */
+    public function __toString()
+    {
+        return $this->title ? $this->title : 'NEW';
+    }
 
     public function __construct()
     {
         $this->posts = new ArrayCollection();
         $this->children = new ArrayCollection();
     }
-
     public function getId()
     {
         return $this->id;
     }
-
     public function getTitle(): ?string
     {
         return $this->title;
     }
-
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
         return $this;
     }
-
     /**
      * @return Collection|Post[]
      */
@@ -58,17 +56,14 @@ class Category
     {
         return $this->posts;
     }
-
     public function addPost(Post $post): self
     {
         if (!$this->posts->contains($post)) {
             $this->posts[] = $post;
             $post->setCategory($this);
         }
-
         return $this;
     }
-
     public function removePost(Post $post): self
     {
         if ($this->posts->contains($post)) {
@@ -78,7 +73,6 @@ class Category
                 $post->setCategory(null);
             }
         }
-
         return $this;
     }
 }

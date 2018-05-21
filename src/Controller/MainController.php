@@ -5,6 +5,7 @@ use App\Entity\Post;
 use App\Entity\Tag;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class MainController extends Controller
 {
     /**
@@ -49,9 +50,7 @@ class MainController extends Controller
     public function article($slug)
     {
         $post = $this->getDoctrine()->getRepository(Post::class)->find($slug);
-        return $this->render('main/article.html.twig', [
-            'post' => $post,
-        ]);
+        return $this->render('main/article.html.twig', compact('post'));
     }
 
     /**
@@ -60,9 +59,7 @@ class MainController extends Controller
     public function tag($slug)
     {
         $tag = $this->getDoctrine()->getRepository(Tag::class)->find($slug);
-        return $this->render('main/tag.html.twig', [
-            'tag' => $tag,
-        ]);
+        return $this->render('main/tag.html.twig', compact('tag'));
     }
 //
 }

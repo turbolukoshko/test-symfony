@@ -3,7 +3,7 @@
 /.env
 /public/bundles/
 /var/
-/vendor//.idea/###< symfony/framework-bundle ###
+/vendor/###< symfony/framework-bundle ###
 
 ###> symfony/webpack-encore-pack ###
 /node_modules/
@@ -20,3 +20,5 @@ yarn-error.log
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
+
+/.idea/

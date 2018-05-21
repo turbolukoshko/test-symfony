@@ -47,7 +47,7 @@ class MainController extends Controller
     /**
      * @Route("/article/{slug}", name="article")
      *
-     * @ParamConverter("slug", class="App:Post")
+     * @ParamConverter("slug", class="App\Entity\Post")
      */
     public function article($slug)
     {
@@ -60,7 +60,7 @@ class MainController extends Controller
     /**
      * @Route("/tag/{slug}", name="tag")
      *
-     * @ParamConverter("slug", class="App:Tag")
+     * @ParamConverter("slug", class="App\Entity\Tag")
      */
     public function tag($slug)
     {

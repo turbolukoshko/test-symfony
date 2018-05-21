@@ -46,20 +46,27 @@ class MainController extends Controller
 
     /**
      * @Route("/article/{slug}", name="article")
+     *
+     * @ParamConverter("slug", class="App:Post")
      */
     public function article($slug)
     {
-        $post = $this->getDoctrine()->getRepository(Post::class)->find($slug);
-        return $this->render('main/article.html.twig', compact('post'));
+//        $post = $this->getDoctrine()->getRepository(Post::class)->find($slug);
+        return $this->render('main/article.html.twig', [
+            'post' =>  $slug,
+            ]);
     }
 
     /**
      * @Route("/tag/{slug}", name="tag")
+     *
+     * @ParamConverter("slug", class="App:Tag")
      */
     public function tag($slug)
     {
-        $tag = $this->getDoctrine()->getRepository(Tag::class)->find($slug);
-        return $this->render('main/tag.html.twig', compact('tag'));
+        return $this->render('main/tag.html.twig', [
+            'tag' => $slug,
+        ]);
     }
 //
 }

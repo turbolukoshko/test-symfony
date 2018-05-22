@@ -10,13 +10,9 @@
     <h1> Tags ✅</h1>
 
     {% for tag in tags %}
-    <li><a href="{{ path('tag', {'tag' : tag.id}) }}">{{ tag.title }}</a></li>
-    <ul>
-
-        {#{% for post in tag.posts %}#}
-            {#<li><a href="{{ path('article', {'slug' : post.id}) }}">{{ post.title }}</a></li>#}
-        {#{% endfor %}#}
-    </ul>
+        <h2>
+        <a href="{{ path('tags', {'tag' : tag.id}) }}">{{ tag.title }}</a>
+        </h2>
     {% endfor %}
 </div>
 {% endblock %}

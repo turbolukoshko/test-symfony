@@ -3,6 +3,8 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\Post;
 use App\Entity\Tag;
+use App\Repository\CategoryRepository;
+use App\Repository\TagRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -29,29 +31,28 @@ class MainController extends Controller
     /**
      * @Route("/blog", name="blog")
      */
-    public function blog()
+    public function blog(CategoryRepository $categoryRepository)
     {
-        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+        $categories = $categoryRepository->findAll();
         return $this->render('main/blog.html.twig', compact('categories'));
     }
 
     /**
      * @Route("/tags", name="tags")
      */
-    public function tags()
+    public function tags(TagRepository $tagRepository)
     {
-        $tags = $this->getDoctrine()->getRepository(Tag::class)->findAll();
-        return $this->render('main/tags.html.twig', compact('tags'));
+        $tags = $tagRepository->findAll();
+        return $this->render('main/tags.html.twig', ['tags' => $tags]);
     }
 
     /**
      * @Route("/article/{post}", name="article")
      *
-     * @ParamConverter("post", class="App:Post")
+     * @ParamConverter("post", class="App\Entity\Post")
      */
     public function article(Post $post)
     {
-//        $post = $this->getDoctrine()->getRepository(Post::class)->find($slug);
         return $this->render('main/article.html.twig', [
             'post' => $post
         ]);

@@ -34,6 +34,11 @@ class Post
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="posts")
      */
     private $tags;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
     public function __construct()
     {
         $this->created_at = new \DateTime();
@@ -102,6 +107,18 @@ class Post
         if ($this->tags->contains($tag)) {
             $this->tags->removeElement($tag);
         }
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
         return $this;
     }
 }
